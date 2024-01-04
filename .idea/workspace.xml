@@ -5,17 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="862ec3a3-3fde-4e05-9105-db2ef2ac0672" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations/ChatDemo.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations/ChatServer.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations/Chat_Client_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations/Chat_Client_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/chat-client/src/main/java/ru/geekbrains/chat/client/Client.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/chat-client/src/main/java/ru/geekbrains/chat/client/Program.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/chat-server/src/main/java/ru/geekbrains/chat/server/ClientManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/chat-server/src/main/java/ru/geekbrains/chat/server/Program.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/chat-server/src/main/java/ru/geekbrains/chat/server/Server.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Program.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Program.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

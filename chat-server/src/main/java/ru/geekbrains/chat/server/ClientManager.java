@@ -4,6 +4,8 @@ import java.io.*;
 import java.net.Socket;
 import java.util.AbstractList;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
 public class ClientManager implements Runnable {
     private final Socket socket;
@@ -41,15 +43,6 @@ public class ClientManager implements Runnable {
             } catch (IOException e) {
                 closeEverything(socket, bufferedReader, bufferedWriter);
             }
-            //<editor-fold desc="Description">
-//            try {
-//                messageFromClient = bufferedReader.readLine();
-//                broadcastMessage(messageFromClient);
-//            } catch (IOException e) {
-//                closeEverything(socket, bufferedReader, bufferedWriter);
-//                break;
-//            }
-            //</editor-fold>
         }
     }
 
@@ -66,15 +59,34 @@ public class ClientManager implements Runnable {
 
 
     private void broadcastMessage(String message) {
-        for (ClientManager client : clients) {
-            if (!client.name.equals(name)) try {
-                {
-                    client.bufferedWriter.write(message);
-                    client.bufferedWriter.newLine();
-                    client.bufferedWriter.flush();
+        String[] parts = message.split(" ");
+        if (parts.length > 1 && parts[1].charAt(0) == '@' &&
+                clients.stream().anyMatch(client -> client.name.equals(parts[1].substring(1)))) {
+            var cln = clients.stream().filter(client -> client.name.equals(parts[1].substring(1))).findFirst();
+            if (cln.isPresent()) {
+                parts[1] = null;
+                String newMessage = Arrays.stream(parts)
+                        .filter(s -> s != null && !s.isEmpty())
+                        .collect(Collectors.joining(" "));
+                try {
+                    cln.get().bufferedWriter.write(newMessage);
+                    cln.get().bufferedWriter.newLine();
+                    cln.get().bufferedWriter.flush();
+                } catch (IOException e) {
+                    closeEverything(socket, bufferedReader, bufferedWriter);
                 }
-            } catch (IOException e) {
-                closeEverything(socket, bufferedReader, bufferedWriter);
+            }
+        } else {
+            for (ClientManager client : clients) {
+                if (!client.name.equals(name)) try {
+                    {
+                        client.bufferedWriter.write(message);
+                        client.bufferedWriter.newLine();
+                        client.bufferedWriter.flush();
+                    }
+                } catch (IOException e) {
+                    closeEverything(socket, bufferedReader, bufferedWriter);
+                }
             }
         }
     }
